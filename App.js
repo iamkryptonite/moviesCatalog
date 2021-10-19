@@ -38,6 +38,8 @@ const App = () => {
       <Tab.Navigator
         screenOptions={{
           headerShown: false,
+          tabBarStyle: {backgroundColor: '#1a1a1a'},
+          tabBarActiveTintColor: '#E50914',
         }}>
         <Tab.Screen
           name="Home"
