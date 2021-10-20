@@ -1,14 +1,13 @@
 /* eslint-disable prettier/prettier */
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import {SafeAreaView, Text, View} from 'react-native';
+import {styles} from './styles';
 
 const SplashScreen = () => {
   return (
-    <SafeAreaView>
-      <View>
-        <Text>SplashScreen</Text>
-      </View>
-    </SafeAreaView>
+    <View style={styles.container}>
+      <Text style={styles.intro}>Welcome</Text>
+    </View>
   );
 };
 

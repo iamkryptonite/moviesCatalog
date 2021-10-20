@@ -4,15 +4,13 @@
 import React from 'react';
 import { styles } from './styles';
 import RenderHtml from 'react-native-render-html';
-
 import {
-        SafeAreaView,
         Text,
         View,
-        ScrollView,
         useWindowDimensions,
         Image,
         TouchableHighlight,
+        ScrollView,
       } from 'react-native';
 
 const tagsStyles = {
@@ -22,23 +20,21 @@ const tagsStyles = {
   },
 };
 
-
-
-const MoviesScreen = ({navigation,route}) => {
-  const {movies} = route.params;
+const MoviesTemplate = (props,{navigation,route}) => {
+  const {movies} = props;
+  console.log(movies);
   const { width } = useWindowDimensions();
 
   const getMovies = () =>{
     return movies.map(movie => {
       return (
         <TouchableHighlight
-          onPress ={() => navigation.navigate('Details',{movie:movie})}
           key = {movie.show.id}
         >
           <View style={styles.card}>
             <Image
               style={styles.image}
-              source={{uri:movie.show.image.original}}
+              source={{uri:movie.show.image?.medium}}
             />
             <View style={{padding:10,flex:2,height:200,overflow:'hidden'}}>
               <Text style={styles.title}>{movie.show.name}</Text>
@@ -50,19 +46,20 @@ const MoviesScreen = ({navigation,route}) => {
                   tagsStyles = {tagsStyles}
                 />
               </ScrollView>
-              
             </View>
           </View>
         </TouchableHighlight>
       );
-  })};
-  return (
-    <SafeAreaView>
-      <ScrollView style={{backgroundColor:'#141414'}}>
-        {getMovies()}
-      </ScrollView>
-    </SafeAreaView>
-  );
+  });
 };
 
-export default MoviesScreen;
+    if (movies === undefined)
+        {return <></>;}
+    return (
+        <>
+            {getMovies()}
+        </>
+    );
+};
+
+export default MoviesTemplate;
